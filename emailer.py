@@ -1,16 +1,17 @@
 """
 Email module which handles the crafting and sending of emails.
 """
+import config
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from tabulate import tabulate
 import smtplib
 
 
-def send_deals(args, deals):
+def send_deals(args, events):
     headers = [['Title','Link']]
     text = '{table}'
-    text = text.format(table=tabulate(headers + deals, headers='firstrow', tablefmt='grid'))
+    text = text.format(table=tabulate(headers + events, headers='firstrow', tablefmt='grid'))
     html = """
         <html>
             <body>
@@ -19,7 +20,7 @@ def send_deals(args, deals):
         </html>
         """
     html = html.format(table=tabulate(
-        headers + [('Beautiful Boy', '<a href="{0}" target="_blank">link</a>'.format(r)) for r in deals],
+        headers + [(event.title, '<a href="{0}" target="_blank">link</a>'.format(event.link)) for event in events],
         headers='firstrow',
         tablefmt='html')
     )
