@@ -26,8 +26,8 @@ def send_deals(args, events):
     )
 
     message = MIMEMultipart('alternative', None, [MIMEText(text), MIMEText(html, 'html')])
-    message['Subject'] = 'TIFF TICKET ALERT'
-    message['From'] = 'allenqdam@gmail.com'
+    message['Subject'] = 'AMC TICKET ALERT'
+    message['From'] = 'nellaqmad@gmail.com'
     message['To'] = 'allenqdam@gmail.com'
 
     server = smtplib.SMTP_SSL('smtp.gmail.com')
